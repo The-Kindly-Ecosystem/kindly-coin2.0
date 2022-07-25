@@ -1,0 +1,1 @@
+# kindly-coin2.0
