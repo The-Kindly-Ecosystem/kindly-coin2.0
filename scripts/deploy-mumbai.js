@@ -22,7 +22,7 @@ async function main() {
   // console.log("Kindlycoin deployed to:", kindlycoin.address);
 
   const Kindly = await hre.ethers.getContractFactory("contracts/Kindlycoin.sol:Kindly");
-  const kindly = await Kindly.deploy("Kindly Coin","KIND",18,"0xb5505a6d998549090530911180f38aC5130101c6");
+  const kindly = await Kindly.deploy("Kindly Coin","TEST","0xb5505a6d998549090530911180f38aC5130101c6");
 
   await kindly.deployed();
 
@@ -41,12 +41,3 @@ main()
   });
 
 
-  
-  {
-    _setupContractId("DummyMintableERC20");
-    _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
-    _setupRole(PREDICATE_ROLE, _msgSender());
-    _setupRole(PREDICATE_ROLE, "0x37c3bfC05d5ebF9EBb3FF80ce0bd0133Bf221BC8");
-
-    _initializeEIP712(name_);
-}

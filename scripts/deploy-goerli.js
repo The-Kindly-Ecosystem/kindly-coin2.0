@@ -22,7 +22,7 @@ async function main() {
   // console.log("Kindlycoin deployed to:", kindlycoin.address);
 
   const Kindly = await hre.ethers.getContractFactory("contracts/Kindlycoin-eth.sol:Kindly");
-  const kindly = await Kindly.deploy("Kindly Coin","KIND");
+  const kindly = await Kindly.deploy("Kindly Coin","TEST");
 
   await kindly.deployed();
 
