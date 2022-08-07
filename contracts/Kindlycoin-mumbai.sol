@@ -1,4 +1,3 @@
-
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.0;
@@ -11,20 +10,19 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 
-
 // File: contracts/common/AccessControlMixin.sol
 
 contract AccessControlMixin is AccessControl {
     string private _revertMsg;
+
     function _setupContractId(string memory contractId) internal {
-        _revertMsg = string(abi.encodePacked(contractId, ": INSUFFICIENT_PERMISSIONS"));
+        _revertMsg = string(
+            abi.encodePacked(contractId, ": INSUFFICIENT_PERMISSIONS")
+        );
     }
 
     modifier only(bytes32 role) {
-        require(
-            hasRole(role, _msgSender()),
-            _revertMsg
-        );
+        require(hasRole(role, _msgSender()), _revertMsg);
         _;
     }
 }
@@ -57,24 +55,20 @@ contract EIP712Base is Initializable {
         bytes32 salt;
     }
 
-    string constant public ERC712_VERSION = "1";
+    string public constant ERC712_VERSION = "1";
 
-    bytes32 internal constant EIP712_DOMAIN_TYPEHASH = keccak256(
-        bytes(
-            "EIP712Domain(string name,string version,address verifyingContract,bytes32 salt)"
-        )
-    );
+    bytes32 internal constant EIP712_DOMAIN_TYPEHASH =
+        keccak256(
+            bytes(
+                "EIP712Domain(string name,string version,address verifyingContract,bytes32 salt)"
+            )
+        );
     bytes32 internal domainSeperator;
 
     // supposed to be called once while initializing.
     // one of the contractsa that inherits this contract follows proxy pattern
     // so it is not possible to do this in a constructor
-    function _initializeEIP712(
-        string memory name
-    )
-        internal
-        initializer
-    {
+    function _initializeEIP712(string memory name) internal initializer {
         _setDomainSeperator(name);
     }
 
@@ -123,14 +117,14 @@ contract EIP712Base is Initializable {
 
 // File: contracts/common/NativeMetaTransaction.sol
 
-
 contract NativeMetaTransaction is EIP712Base {
     using SafeMath for uint256;
-    bytes32 private constant META_TRANSACTION_TYPEHASH = keccak256(
-        bytes(
-            "MetaTransaction(uint256 nonce,address from,bytes functionSignature)"
-        )
-    );
+    bytes32 private constant META_TRANSACTION_TYPEHASH =
+        keccak256(
+            bytes(
+                "MetaTransaction(uint256 nonce,address from,bytes functionSignature)"
+            )
+        );
     event MetaTransactionExecuted(
         address userAddress,
         address payable relayerAddress,
@@ -227,11 +221,7 @@ contract NativeMetaTransaction is EIP712Base {
 // File: contracts/common/ContextMixin.sol
 
 abstract contract ContextMixin {
-    function msgSender()
-        internal
-        view
-        returns (address payable sender)
-    {
+    function msgSender() internal view returns (address payable sender) {
         if (msg.sender == address(this)) {
             bytes memory array = msg.data;
             uint256 index = msg.data.length;
@@ -264,12 +254,12 @@ contract Kindly is
         string memory name_,
         string memory symbol_,
         address childChainManager
-    )  ERC20(name_, symbol_) {
+    ) ERC20(name_, symbol_) {
         _setupContractId("Kindly");
         _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _setupRole(DEPOSITOR_ROLE, childChainManager);
         _initializeEIP712(name_);
-         _mint(_msgSender(), 108000000 * 10**18);
+        _mint(_msgSender(), 108000000 * 10**18);
     }
 
     /**
@@ -305,7 +295,10 @@ contract Kindly is
      * @param user user for whom tokens are being minted
      * @param amount amount of token to mint
      */
-    function mint(address user, uint256 amount) public only(DEFAULT_ADMIN_ROLE) {
+    function mint(address user, uint256 amount)
+        public
+        only(DEFAULT_ADMIN_ROLE)
+    {
         _mint(user, amount);
     }
 }
