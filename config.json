@@ -1,0 +1,22 @@
+{
+  "rootChainProxy": "0x2890ba17efe978480615e330ecb65333b880928e",
+  "mainnetRootChainProxy": "0x86E4Dc95c7FBdBf52e33D563BbDB00823894C287",
+
+  "posRootERC20": "0x3bF7c488AB444F06ac57339ED4804f0F08B857a2",
+  "posChildERC20": "0x203757676edD605152b49cdF2A8038D5aE28E2d4",
+
+  "plasmaWETH": "0x4DfAe612aaCB5b448C12A591cD0879bFa2e51d62",
+  "plasmaRootERC20": "0x3f152B63Ec5CA5831061B2DccFb29a874C317502",
+  "plasmaChildERC20": "0x2d7882beDcbfDDce29Ba99965dd3cdF7fcB10A1e",
+  
+  "MATIC_RPC": "https://matic-mumbai.chainstacklabs.com",
+  "ETHEREUM_RPC": "https://goerli.infura.io/v3/fce7ed09230548eea542d77c55357baf",
+  
+  "MATIC_CHAINID": 80001,
+  "ETHEREUM_CHAINID": 5,
+  
+  "NETWORK": "testnet",
+  "VERSION": "mumbai",
+
+  "proofApi": "https://apis.matic.network/"
+}

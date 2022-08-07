@@ -22,13 +22,11 @@ async function main() {
   // console.log("Kindlycoin deployed to:", kindlycoin.address);
 
   const Kindly = await hre.ethers.getContractFactory("contracts/Kindlycoin-eth.sol:Kindly");
-  const kindly = await Kindly.deploy("Kindly Coin","TEST");
+  const kindly = await Kindly.deploy("Kindly Coin", "KIND");
 
   await kindly.deployed();
 
   console.log("Kindly deployed to Goerli: ", kindly.address);
-
-
 }
 
 // We recommend this pattern to be able to use async/await everywhere

@@ -1,10 +1,11 @@
 require("@nomiclabs/hardhat-waffle");
-require("dotenv").config();
 require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-web3");
 require("@nomiclabs/hardhat-etherscan");
+require("dotenv").config();
+const config = require("./config.json");
 
-const { POLYGON_MUMBAI_RPC_PROVIDER, PRIVATE_KEY, POLYGONSCAN_API_KEY, ETHEREUM_GOERLI_RPC_PROVIDER, GOERLI_PRIVATE_KEY, ETHERSCAN_API_KEY } = process.env;
+const { MUMBAI_PRIVATE_KEY, POLYGONSCAN_API_KEY, GOERLI_PRIVATE_KEY, ETHERSCAN_API_KEY } = process.env;
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -41,19 +42,19 @@ module.exports = {
     ropsten: {
       url: process.env.ROPSTEN_URL || "",
       accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+        process.env.MUMBAI_PRIVATE_KEY !== undefined ? [process.env.MUMBAI_PRIVATE_KEY] : [],
     },
     mumbai: {
-      url: POLYGON_MUMBAI_RPC_PROVIDER,
-      accounts: [`0x${PRIVATE_KEY}`],
+      url: config.MATIC_RPC,
+      accounts: [`0x${MUMBAI_PRIVATE_KEY}`],
     },
     goerli: {
-      url: ETHEREUM_GOERLI_RPC_PROVIDER,
+      url: config.ETHEREUM_RPC,
       accounts: [`0x${GOERLI_PRIVATE_KEY}`]
     }
   },
   etherscan: {
-    apiKey: ETHERSCAN_API_KEY
+    apiKey: getApiKey(process.argv[5])
   },
   solidity: {
     compilers: [
@@ -111,7 +112,9 @@ module.exports = {
           },
         }
       }
-
     ]
   },
+  mocha: {
+    timeout: 100000000
+  }
 };

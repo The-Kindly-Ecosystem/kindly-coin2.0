@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 //AccessControlMixin
 import "@openzeppelin/contracts/access/AccessControl.sol";
+
 import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 
 // File: contracts/root/RootToken/IMintableERC20.sol
@@ -279,4 +280,12 @@ contract Kindly is
         _mint(user, amount);
     }
 
+    // function _msgSender()
+    //     internal
+    //     override
+    //     view
+    //     returns (address payable sender)
+    // {
+    //     return ContextMixin.msgSender();
+    // }
 }

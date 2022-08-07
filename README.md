@@ -1,4 +1,4 @@
-# README #
+# Kindly Contracts 💚 #
 
 ### Project Overview
 

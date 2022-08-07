@@ -265,23 +265,12 @@ contract Kindly is
         string memory symbol_,
         address childChainManager
     )  ERC20(name_, symbol_) {
-        _setupContractId("Kind");
+        _setupContractId("Kindly");
         _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _setupRole(DEPOSITOR_ROLE, childChainManager);
         _initializeEIP712(name_);
          _mint(_msgSender(), 108000000 * 10**18);
     }
-
-    // This is to support Native meta transactions
-    // never use msg.sender directly, use _msgSender() instead
-    // function _msgSender()
-    //     internal
-    //     override
-    //     view
-    //     returns (address payable sender)
-    // {
-    //     return ContextMixin.msgSender();
-    // }
 
     /**
      * @notice called when token is deposited on root chain
