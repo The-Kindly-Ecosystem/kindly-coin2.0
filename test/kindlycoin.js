@@ -16,7 +16,7 @@ describe("Kindly Coin on Mumbai", function () {
   });
 
   before(async function () {
-    const ERC20Token = await ethers.getContractFactory("contracts/Kindlycoin-mumbai.sol:Kindly");
+    const ERC20Token = await ethers.getContractFactory("contracts/Kindlycoin.sol:Kindly");
     erc20Token = await ERC20Token.deploy("Kindly Coin", "KIND", "0xb5505a6d998549090530911180f38aC5130101c6");
   });
 

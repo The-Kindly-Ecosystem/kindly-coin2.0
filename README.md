@@ -1,8 +1,8 @@
 # Kindly Contracts 💚 #
 
-### Project Overview
+### Overview
 
-Kindly’s bridging the gap between social impact and Web3 with the creation of innovative consumer and business-related products that generate, track and execute certified measurable social impact on the blockchain.
+Kindly Coin ($KIND) is an ERC-20 token built on Polygon that supports bridging to other blockchains. $KIND is a cryptocurrency that is used to purchase, transport and track social impact on the blockchain. It is also used to pay social impact transactions fees, operate charitable staking initiatives and transport social impact across multiple blockchains. Once our ecosystem becomes fully operational we will then look to decentralize various aspects of the project and utilize the KIND token to implement voting and governance mechanisms.
 
 ### Purpose & Functionalities of the Kindly Coin
 
