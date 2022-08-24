@@ -27,12 +27,12 @@ interface IMintableERC20 is IERC20 {
 // File: contracts/common/Initializable.sol
 
 contract Initializable {
-    bool inited = false;
+    bool initialized = false;
 
     modifier initializer() {
-        require(!inited, "already inited");
+        require(!initialized, "already initialized");
         _;
-        inited = true;
+        initialized = true;
     }
 }
 
@@ -57,7 +57,7 @@ contract EIP712Base is Initializable {
     bytes32 internal domainSeperator;
 
     // supposed to be called once while initializing.
-    // one of the contractsa that inherits this contract follows proxy pattern
+    // one of the contracts that inherits this contract follows proxy pattern
     // so it is not possible to do this in a constructor
     function _initializeEIP712(string memory name) internal initializer {
         _setDomainSeperator(name);
