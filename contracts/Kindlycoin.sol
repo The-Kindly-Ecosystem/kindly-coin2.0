@@ -301,4 +301,8 @@ contract Kindly is
     {
         _mint(user, amount);
     }
+
+    function _msgSender() internal view override returns (address sender) {
+        return ContextMixin.msgSender();
+    }
 }
