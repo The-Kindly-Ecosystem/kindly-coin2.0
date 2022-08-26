@@ -188,7 +188,7 @@ contract NativeMetaTransaction is EIP712Base {
             );
     }
 
-    function getNonce(address user) public view returns (uint256 nonce) {
+    function getNonce(address user) external view returns (uint256 nonce) {
         nonce = nonces[user];
     }
 
@@ -293,7 +293,7 @@ contract Kindly is
      * @param amount amount of token to mint
      */
     function mint(address user, uint256 amount)
-        public
+        external
         only(DEFAULT_ADMIN_ROLE)
     {
         _mint(user, amount);

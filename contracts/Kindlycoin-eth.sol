@@ -186,7 +186,7 @@ contract NativeMetaTransaction is EIP712Base {
             );
     }
 
-    function getNonce(address user) public view returns (uint256 nonce) {
+    function getNonce(address user) external view returns (uint256 nonce) {
         nonce = nonces[user];
     }
 
