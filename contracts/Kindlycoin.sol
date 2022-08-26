@@ -259,7 +259,7 @@ contract Kindly is
         _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _setupRole(DEPOSITOR_ROLE, childChainManager);
         _initializeEIP712(name_);
-        _mint(_msgSender(), 108000000 * 10**18);
+        _mint(_msgSender(), 108e24);
     }
 
     /**
