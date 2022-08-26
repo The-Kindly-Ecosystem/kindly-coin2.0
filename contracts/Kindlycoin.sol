@@ -2,7 +2,6 @@
 
 pragma solidity 0.8.2;
 
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -111,7 +110,7 @@ contract EIP712Base is Initializable {
 // File: contracts/common/NativeMetaTransaction.sol
 
 contract NativeMetaTransaction is EIP712Base {
-    using SafeMath for uint256;
+
     bytes32 private constant META_TRANSACTION_TYPEHASH =
         keccak256(
             bytes(
@@ -155,7 +154,7 @@ contract NativeMetaTransaction is EIP712Base {
         );
 
         // increase nonce for user (to avoid re-use)
-        nonces[userAddress] = nonces[userAddress].add(1);
+        nonces[userAddress] = nonces[userAddress] + 1;
 
         emit MetaTransactionExecuted(
             userAddress,
