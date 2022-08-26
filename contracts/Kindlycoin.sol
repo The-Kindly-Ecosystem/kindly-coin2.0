@@ -48,7 +48,6 @@ contract Initializable {
 // File: contracts/common/EIP712Base.sol
 
 contract EIP712Base is Initializable {
-
     string public constant ERC712_VERSION = "1";
 
     bytes32 internal constant EIP712_DOMAIN_TYPEHASH =
@@ -244,6 +243,9 @@ contract Kindly is
 {
     bytes32 public constant DEPOSITOR_ROLE = keccak256("DEPOSITOR_ROLE");
 
+    event Minted(address user, uint256 amount);
+    event Deposited(address user, uint256 amount);
+
     constructor(
         string memory name_,
         string memory symbol_,
@@ -271,6 +273,7 @@ contract Kindly is
     {
         uint256 amount = abi.decode(depositData, (uint256));
         _mint(user, amount);
+        emit Deposited(user, amount);
     }
 
     /**
@@ -294,6 +297,7 @@ contract Kindly is
         only(DEFAULT_ADMIN_ROLE)
     {
         _mint(user, amount);
+        emit Minted(user, amount);
     }
 
     function _msgSender() internal view override returns (address sender) {
