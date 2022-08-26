@@ -48,12 +48,6 @@ contract Initializable {
 // File: contracts/common/EIP712Base.sol
 
 contract EIP712Base is Initializable {
-    struct EIP712Domain {
-        string name;
-        string version;
-        address verifyingContract;
-        bytes32 salt;
-    }
 
     string public constant ERC712_VERSION = "1";
 
