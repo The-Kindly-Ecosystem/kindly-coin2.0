@@ -245,9 +245,6 @@ contract AccessControlMixin is AccessControl {
 
 // File: contracts/root/RootToken/Kindly.sol
 
-// This contract is not supposed to be used in production
-// It's strictly for testing purpose
-
 contract Kindly is
     ERC20,
     AccessControlMixin,
