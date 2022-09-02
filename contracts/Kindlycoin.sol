@@ -4,6 +4,7 @@ pragma solidity 0.8.2;
 
 import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 //AccessControlMixin
 import "@openzeppelin/contracts/access/AccessControl.sol";
@@ -110,7 +111,6 @@ contract EIP712Base is Initializable {
 // File: contracts/common/NativeMetaTransaction.sol
 
 contract NativeMetaTransaction is EIP712Base {
-
     bytes32 private constant META_TRANSACTION_TYPEHASH =
         keccak256(
             bytes(
@@ -235,6 +235,7 @@ abstract contract ContextMixin {
 
 contract Kindly is
     ERC20,
+    Ownable,
     IChildToken,
     AccessControlMixin,
     NativeMetaTransaction,

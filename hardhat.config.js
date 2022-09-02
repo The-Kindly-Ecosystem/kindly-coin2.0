@@ -44,6 +44,10 @@ module.exports = {
       accounts:
         process.env.MUMBAI_PRIVATE_KEY !== undefined ? [process.env.MUMBAI_PRIVATE_KEY] : [],
     },
+    matic: {
+      url: config.MATIC_URL,
+      accounts: [process.env.MATIC_PRIVATE_KEY]
+    },
     mumbai: {
       url: config.MATIC_RPC,
       accounts: [`0x${MUMBAI_PRIVATE_KEY}`],
@@ -54,7 +58,7 @@ module.exports = {
     }
   },
   etherscan: {
-    apiKey: getApiKey(process.argv[5])
+    apiKey: POLYGONSCAN_API_KEY
   },
   solidity: {
     compilers: [

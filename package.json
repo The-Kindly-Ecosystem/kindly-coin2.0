@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "deploy:mumbai": "npx hardhat run scripts/deploy-mumbai.js --network mumbai",
+    "deploy:matic": "npx hardhat run scripts/deploy-matic.js --network matic",
     "deploy:goerli": "npx hardhat run scripts/deploy-goerli.js --network goerli",
     "test": "npx hardhat test"
   },
