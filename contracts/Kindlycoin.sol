@@ -4,7 +4,6 @@ pragma solidity 0.8.2;
 
 import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 
 //AccessControlMixin
 import "@openzeppelin/contracts/access/AccessControl.sol";
@@ -235,13 +234,13 @@ abstract contract ContextMixin {
 
 contract Kindly is
     ERC20,
-    Ownable,
     IChildToken,
     AccessControlMixin,
     NativeMetaTransaction,
     ContextMixin
 {
     bytes32 public constant DEPOSITOR_ROLE = keccak256("DEPOSITOR_ROLE");
+    address mulSign = 0x8a52a9179Ac923ee924e805551621ec6a31c385A;
 
     event Minted(address user, uint256 amount);
     event Deposited(address user, uint256 amount);
@@ -252,10 +251,9 @@ contract Kindly is
         address childChainManager
     ) ERC20(name_, symbol_) {
         _setupContractId("Kindly");
-        _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _setupRole(DEPOSITOR_ROLE, childChainManager);
         _initializeEIP712(name_);
-        _mint(_msgSender(), 108e24);
+        _mint(mulSign, 108e24);
     }
 
     /**
@@ -285,19 +283,8 @@ contract Kindly is
         _burn(_msgSender(), amount);
     }
 
-    /**
-     * @notice Example function to handle minting tokens on matic chain
-     * @dev Minting can be done as per requirement,
-     * This implementation allows only admin to mint tokens but it can be changed as per requirement
-     * @param user user for whom tokens are being minted
-     * @param amount amount of token to mint
-     */
-    function mint(address user, uint256 amount)
-        external
-        only(DEFAULT_ADMIN_ROLE)
-    {
-        _mint(user, amount);
-        emit Minted(user, amount);
+    function isMember(address account) public view virtual returns (bool) {
+        return hasRole(DEFAULT_ADMIN_ROLE, account);
     }
 
     function _msgSender() internal view override returns (address sender) {
